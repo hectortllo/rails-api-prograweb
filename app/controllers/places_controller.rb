@@ -20,8 +20,14 @@ class PlacesController < ApplicationController
     render json: @place, status: :ok
   end
 
+  def destroy
+    @place = Place.find(params[:id])
+    @place.destroy
+    render json: @place, status: :ok
+  end
+
   private
   def place_params
-    params.require(:place).permit(:image, :name, :description, :location, :score)
+    params.require(:place).permit(:id, :image, :name, :description, :location, :score)
   end
 end
